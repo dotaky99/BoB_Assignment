@@ -11,10 +11,12 @@ alert tcp any any -> any 443 (msg:"github.com access"; content:"|67 69 74 68 75 
 alert tcp any any -> any 443 (msg:"kosaf.go.kr access"; content:"|6b 6f 73 61 66 2e 67 6f 2e 6b 72|"; sid:10011; rev:1;)
 alert tcp any any -> any 443 (msg:"daum.net access"; content:"|64 61 75 6d 2e 6e 65 74|"; sid:10012; rev:1;)
 alert tcp any any -> any 443 (msg:"lge.co.kr access"; content:"|6c 67 65 2e 63 6f 2e 6b 72|"; sid:10013; rev:1;)
-alert tcp any any -> any 443 (msg:"samsumg.com access"; content:"|73 61 6d 73 75 6e 67 2e 63 6f 6d|"; sid:10014; rev:1;)
-alert tcp any any -> any 443 (msg:"gov.kr access"; content:"|67 6f 76 2e 6b 72|"; sid:10015; rev:1;)
-alert tcp any any -> any 443 (msg:"btc.com access"; content:"|62 74 63 2e 63 6f|"; sid:10016; rev:1;)
-alert tcp any any -> any 443 (msg:"regexper.com access"; content:"|72 65 67 65 78 70 65 72 2e 63 6f 6d|"; sid:10017; rev:1;)
-alert tcp any any -> any 443 (msg:"dfchallenge.org access"; content:"|64 66 63 68 61 6c 6c 65 6e 67 65 2e 6f 72 67|"; sid:10018; rev:1;)
+#위에는 과제할 때 Server Name을 찍어본 것
+#아래는 suricata 공식문서 참고
+alert tcp any any -> any 443 (msg:"samsumg.com access"; tls_sni;content:"samsung.com"; sid:10014; rev:1;)
+alert tcp any any -> any 443 (msg:"gov.kr access"; tls_sni;content:"gov.kr"; sid:10015; rev:1;)
+alert tcp any any -> any 443 (msg:"btc.com access"; tls_sni;content:"btc.com"; sid:10016; rev:1;)
+alert tcp any any -> any 443 (msg:"regexper.com access"; tls_sni;content:"regexper.com"; sid:10017; rev:1;)
+alert tcp any any -> any 443 (msg:"dfchallenge.org access"; tls_sni;content:"dfchallenge.org"; sid:10018; rev:1;)
 alert tcp any any -> any 80 (msg:"boannews access"; content:"GET /"; content:"Host: "; content:"boannews.com"; sid:10019; rev:1;)
-alert tcp any any -> any 443 (msg:"dailysecu.com access"; content:"|64 61 69 6c 79 73 65 63 75 2e 63 6f 6d|"; sid:10020; rev:1;)
+alert tcp any any -> any 443 (msg:"dailysecu.com access"; tls_sni;content:"dailysecu.com"; sid:10020; rev:1;)
